@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        .container{
+            display:flex;
+            flex-direction: column;
+            width:300px;
+            align-items:center;
+            margin: 0 auto;
+            border: 2px solid black;
+            gap: 0.5em;
+            padding: 0.5em;
+            font-weight: bold;
+            background-color: gray;
+        }
+        #bevitel{
+            width:50px;
+        }
+        #szam1{
+            width:30px;
+        }
+        #szam2{
+            width:30px
+        }
+        #ujszam{
+            width:120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span>Jó vagy fejszámolásban?</span> 
+        <input type="button" value="új számot kérek" id="ujszam" onclick="random()">
+
+        <div>
+        <input type="text" value="3" id="szam1" disabled>
+        <i class="fa-solid fa-plus"></i>
+        <input type="text" name="" id="szam2" disabled>
+        <i class="fa-solid fa-equals"></i>
+        <input type="text" name="" id="bevitel" onkeyup="szamol()">
+        </div>
+
+        <p class="ikon"><i class="fa-solid fa-question"></i></p>
+    </div>
+
+    <script>
+        random();
+        function random(){
+            document.querySelector('#szam1').value= Math.floor(Math.random()*(100-1)+1)
+            document.querySelector('#szam2').value= Math.floor(Math.random()*(100-1)+1)
+            document.querySelector('#bevitel').disabled=false;
+            document.querySelector('#bevitel').value=""
+            document.querySelector('.ikon').innerHTML="<i class='fa-solid fa-question'></i>"
+        }
+        
+        
+        function szamol(){
+            let bekert_szam=document.getElementById('bevitel').value
+           let rand1=Number(document.querySelector('#szam1').value)
+           let rand2=Number(document.querySelector('#szam2').value)
+            if(bekert_szam==(rand1+rand2)){
+            document.querySelector('.ikon').innerHTML="<i class='fa-solid fa-thumbs-up'></i>"
+            document.querySelector('#bevitel').disabled=true
+            }
+            else
+            document.querySelector('.ikon').innerHTML="<i class='fa-solid fa-question'></i>"
+        }
+    </script>
+</body>
+</html>
